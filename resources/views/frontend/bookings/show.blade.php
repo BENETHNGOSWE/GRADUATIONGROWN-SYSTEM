@@ -32,6 +32,9 @@
                     </form>
                 @endif
                 <br>
+                @if ($booking->charges > 0)
+                 <strong>Overdue Charges:</strong> {{ $booking->charges }}
+                @endif
                 {{-- @if ($booking->dammy_sims_results)
                     <strong>Graduation Grown Color:</strong> {{ $booking->graduation_growns->Grown_color }}
                 @else

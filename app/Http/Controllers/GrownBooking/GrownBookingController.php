@@ -8,6 +8,7 @@ use App\Models\GraduationGrown;
 use App\Models\GrownBooking;
 use App\Models\GrownPayment;  
 use App\Models\DammySimsResults;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class GrownBookingController extends Controller
@@ -112,6 +113,19 @@ class GrownBookingController extends Controller
             } else {
                 // If no payment exists, mark as not paid
                 $booking->paymentStatus = 'Not Paid';
+            }
+
+            $currentDate = Carbon::now();
+            $returnDate = $booking->graduation_growns->Grown_returndate;
+            // $daysOverdue = $currentDate->diffInDays($returnDate, false);
+            if ($currentDate->gt($returnDate)) {
+                $daysOverdue = $currentDate->diffInDays($returnDate);
+                $chargePerDay = 5000;
+                $booking->charges = $daysOverdue * $chargePerDay;
+                $booking->overdueStatus = 'Overdue';
+            } else {
+                $booking->charges = 0;
+                $booking->overdueStatus = 'Not Overdue';
             }
         }
     

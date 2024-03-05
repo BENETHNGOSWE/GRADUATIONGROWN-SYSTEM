@@ -55,6 +55,7 @@ class GraduationGrownController extends Controller
             'Grown_color' => 'required|string',
             'Grown_Size' => 'required|string',
             'Grown_price' => 'required',
+            'Grown_returndate' => 'required',
             
         ]);
     }
@@ -68,7 +69,6 @@ class GraduationGrownController extends Controller
          $grown = new GraduationGrown();
          $grown->fill($validate);
          $grown->save();
-         dd($grown);
          DB::commit();
             
         } catch (\Throwable $th) {
