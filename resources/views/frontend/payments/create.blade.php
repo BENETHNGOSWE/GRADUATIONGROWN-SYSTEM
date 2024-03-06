@@ -1,4 +1,5 @@
-
+@extends('frontend.layouts.main')
+@section('content')
     <div class="container">
         <h1>Make Payment</h1>
 
@@ -11,3 +12,4 @@
             <button type="submit" class="btn btn-primary">Pay Now</button>
         </form>
     </div>
+@endsection

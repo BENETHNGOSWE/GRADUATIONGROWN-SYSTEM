@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 
 
@@ -43,16 +43,21 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    
 });
+
+// Route::group(['middleware' => 'auth'], function () {});
 
 require __DIR__.'/auth.php';
 
 // GraduationGawn Manage Here
-Route::get('register', [App\Http\Controllers\GraduationGrownRegister\GraduationGrownController::class, 'create'])->name('grown.create');
+Route::get('registergrown', [App\Http\Controllers\GraduationGrownRegister\GraduationGrownController::class, 'create'])->name('grown.create');
 Route::post('store', [App\Http\Controllers\GraduationGrownRegister\GraduationGrownController::class, 'store'])->name('grown.store');
 
 
 // GrownBooking Manage Here
+Route::get('/', [App\Http\Controllers\GrownBooking\GrownBookingController::class, 'indexhomepage'])->name('homepage');
 Route::get('listbooking', [App\Http\Controllers\GrownBooking\GrownBookingController::class, 'index'])->name('booking.list');
 Route::get('registerbooking', [App\Http\Controllers\GrownBooking\GrownBookingController::class, 'create'])->name('booking.create');
 Route::post('checkexamnumber', [App\Http\Controllers\GrownBooking\GrownBookingController::class, 'checkExamNumber'])->name('check-exam-number');

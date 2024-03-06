@@ -1,11 +1,40 @@
-<!-- resources/views/create.blade.php -->
-
-<form action="{{ route('grown.store') }}" method="POST">
-    @csrf
-    <input type="text" name="Grown_color" placeholder="Grown Color">
-    <input type="text" name="Grown_Size" placeholder="Grown Size">
-    <input type="interger" name="Grown_price" placeholder="Grown_price">
-    <input type="date" name="Grown_returndate" placeholder="GrownReturn Date">
-    {{-- <input type="file" name="Grown_image" accept="image/*"> --}}
-    <button type="submit">Submit</button>
-</form>
+@extends('frontend.layouts.main')
+@section('content')
+    <section class="banner_area">
+        <div class="booking_table d_flex align-items-center">
+            <div class="overlay bg-parallax" data-stellar-ratio="0.9" data-stellar-vertical-offset="0" data-background=""></div>
+            <div class="container" style="background-color: #12253a3d; padding: 20px; border-radius: 10px;">
+                <form action="{{ route('grown.store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div style="margin-bottom: 20px;">
+                        <label for="grown_color" style="display: block; font-weight: bold; color: white;">Grown Color:</label>
+                        <input type="text" id="grown_color" name="Grown_color" placeholder="Grown Color"
+                            style="padding: 10px; border: 1px solid #ccc; border-radius: 5px; width: 100%;">
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <label for="grown_size" style="display: block; font-weight: bold; color: white;">Grown Size:</label>
+                        <input type="text" id="grown_size" name="Grown_Size" placeholder="Grown Size"
+                            style="padding: 10px; border: 1px solid #ccc; border-radius: 5px; width: 100%;">
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <label for="grown_price" style="display: block; font-weight: bold; color: white;">Grown Price:</label>
+                        <input type="number" id="grown_price" name="Grown_price" placeholder="Grown Price"
+                            style="padding: 10px; border: 1px solid #ccc; border-radius: 5px; width: 100%;">
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <label for="grown_returndate" style="display: block; font-weight: bold; color: white;">Grown Return Date:</label>
+                        <input type="date" id="grown_returndate" name="Grown_returndate" placeholder="Grown Return Date"
+                            style="padding: 10px; border: 1px solid #ccc; border-radius: 5px; width: 100%;">
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <label for="grown_image" style="display: block; font-weight: bold; color: white;">Upload Image:</label>
+                        <input type="file" id="grown_image" name="Grown_image" accept="image/*"
+                            style="padding: 10px; border: 1px solid #ccc; border-radius: 5px; width: 100%;">
+                    </div>
+                    <button type="submit"
+                        style="padding: 10px 20px; background-color: #fff; color: #007bff; border: none; border-radius: 5px; cursor: pointer;">Submit</button>
+                </form>
+            </div>
+        </div>
+    </section>
+@endsection

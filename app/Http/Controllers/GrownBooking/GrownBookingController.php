@@ -20,7 +20,12 @@ class GrownBookingController extends Controller
        $this->data['grownbooking'] = GrownBooking::all();
     }
 
+    public function indexhomepage(){
+        return view('frontend.homepage', $this->data);
+    }
+
     public function index(){
+        $this->data['booking'] = GraduationGrown::pluck('Grown_color', 'id');
         return view('frontend.bookings.list', $this->data);
     }
 
@@ -128,10 +133,10 @@ class GrownBookingController extends Controller
                 $booking->overdueStatus = 'Not Overdue';
             }
         }
-    
-        // Pass the bookings to the view
         return view('frontend.bookings.show', ['bookings' => $bookings, 'studentNumber' => $studentNumber]);
     }
+    
+
     
     
 

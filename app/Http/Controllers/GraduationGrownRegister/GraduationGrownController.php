@@ -12,6 +12,7 @@ class GraduationGrownController extends Controller
     protected $data = [];
     public function __construct(){
         $this->data['grown'] = GraduationGrown::all();
+        
     }
 
     public function index(){
