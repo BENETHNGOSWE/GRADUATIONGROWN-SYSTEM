@@ -6,11 +6,18 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\GrownPayment;
 use App\Models\GrownBooking;
+use App\Models\GraduationgownContract;
 use App\Models\GraduationGrown;
 
 
 class GrownPaymentController extends Controller
 {
+    protected $data = [];
+    public function __construct(){
+        $this->data['contract'] = GraduationgownContract::first();
+    }
+
+
     public function payNow($bookingId)
     {
         // Find the booking
@@ -22,7 +29,7 @@ class GrownPaymentController extends Controller
             return view('frontend.payments.show', ['payment' => $booking->payment]);
         } else {
             // Payment doesn't exist, show payment form
-            return view('frontend.payments.create', ['booking' => $booking]);
+            return view('frontend.payments.create', ['booking' => $booking, 'contract' => $this->data['contract']]);
         }
     }
 
