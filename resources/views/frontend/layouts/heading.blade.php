@@ -16,16 +16,36 @@
                     <li class="nav-item active"><a class="nav-link" href="{{ route('homepage')}}">Home</a></li> 
                     {{-- <li class="nav-item"><a class="nav-link" href="about.html">About us</a></li> --}}
                     <li class="nav-item"><a class="nav-link" href="{{ route('booking.records')}}">Booking Records</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('homepage')}}">Booking Contract</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('contract.show', $contract->id)}}">Booking Contract</a></li>
                     @auth
                         <li class="nav-item"><a class="nav-link" href="{{ route('booking.list')}}">Booking List</a></li>
                         <li class="nav-item submenu dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Grown</a>
                             <ul class="dropdown-menu">
-                                <li class="nav-item"><a class="nav-link" href="blog.html">Create Gown</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('grown.create')}}">Create Gown</a></li>
                                 <li class="nav-item"><a class="nav-link" href="blog-single.html">Gown Details</a></li>
                             </ul>
+                            
                         </li> 
+
+                        <li class="nav-item submenu dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Contract</a>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item"><a class="nav-link" href="{{ route('contract.create')}}">Upload Contract</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('contract.index')}}">Contract Details</a></li>
+                            </ul>
+                            
+                        </li> 
+                        <li class="nav-item">
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                        
+                                <button type="submit" class="nav-link" style="border: none; background: none; cursor: pointer;">
+                                    Logout
+                                </button>
+                            </form>
+                        </li>
+                        
                     @endauth
                     @guest
                         <!-- Add links for non-logged-in users here -->

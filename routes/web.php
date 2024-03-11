@@ -35,9 +35,9 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -72,3 +72,13 @@ Route::get('bookingrecords', [App\Http\Controllers\GrownBooking\GrownBookingCont
 // GrownPayment Manage Here
 Route::get('grown-bookings/{bookingId}/pay-now', [App\Http\Controllers\Payment\GrownPaymentController::class, 'payNow'])->name('grown-bookings.pay-now');
 Route::post('grown-bookings/{bookingId}/store-payment', [App\Http\Controllers\Payment\GrownPaymentController::class, 'storePayment'])->name('grown-bookings.store-payment');
+
+
+
+// Graduation grown Contract Manage Here
+Route::get('contract', [App\Http\Controllers\Contract\ContractController::class, 'index'])->name('contract.index');
+Route::get('contractcreate', [App\Http\Controllers\Contract\ContractController::class, 'create'])->name('contract.create');
+Route::get('contract/{contract}', [App\Http\Controllers\Contract\ContractController::class, 'show'])->name('contract.show');
+Route::post('contractstore', [App\Http\Controllers\Contract\ContractController::class, 'store'])->name('contract.store');
+Route::get('contractedit/{contract}', [App\Http\Controllers\Contract\ContractController::class, 'edit'])->name('contract.edit');
+Route::post('contractupdate/{contract}', [App\Http\Controllers\Contract\ContractController::class, 'update'])->name('contract.update');

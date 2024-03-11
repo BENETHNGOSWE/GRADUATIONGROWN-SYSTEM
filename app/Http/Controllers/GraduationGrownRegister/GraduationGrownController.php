@@ -5,6 +5,7 @@ namespace App\Http\Controllers\GraduationGrownRegister;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\GraduationGrown;
+use App\Models\GraduationgownContract;
 use Illuminate\Support\Facades\DB;
 
 class GraduationGrownController extends Controller
@@ -12,6 +13,7 @@ class GraduationGrownController extends Controller
     protected $data = [];
     public function __construct(){
         $this->data['grown'] = GraduationGrown::all();
+        $this->data['contract'] = GraduationgownContract::first();
         
     }
 
@@ -20,7 +22,7 @@ class GraduationGrownController extends Controller
     }
 
     public function create(){
-        return view('frontend.Gowns.register');
+        return view('frontend.Gowns.register', $this->data);
     }
 
     // public function store(Request $request)

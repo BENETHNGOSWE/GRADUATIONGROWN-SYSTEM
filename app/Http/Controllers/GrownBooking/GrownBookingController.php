@@ -8,29 +8,41 @@ use App\Models\GraduationGrown;
 use App\Models\GrownBooking;
 use App\Models\GrownPayment;  
 use App\Models\DammySimsResults;
+use App\Models\GraduationgownContract;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class GrownBookingController extends Controller
-{
+{ 
     protected $data = [];
     public function __construct(){
        $this->data['graduationGrowns '] = GraduationGrown::all();
        $this->data['dammySimsResults '] = DammySimsResults::all();
        $this->data['grownbooking'] = GrownBooking::all();
+       $this->data['contract'] = GraduationgownContract::first();
+    //    $this->data['contract'] = GraduationgownContract::all();
     }
 
     public function indexhomepage(){
+        $this->data['contract'] = GraduationgownContract::first();
+        // if ($contract) {
+        //     return view('homepage.index', compact('contract'));
+        // } else {
+        //     return view('homepage.index')->withErrors('No contract found.');
+        // }
+
         return view('frontend.homepage', $this->data);
     }
 
     public function index(){
         $this->data['booking'] = GraduationGrown::pluck('Grown_color', 'id');
+        $this->data['contract'] = GraduationgownContract::first();
         return view('frontend.bookings.list', $this->data);
     }
 
     public function create(){
         $this->data['graduationGrowns'] = GraduationGrown::pluck('Grown_color','id');
+        $this->data['contract'] = GraduationgownContract::first();
         return view('frontend.bookings.register', $this->data);
     }
 
@@ -133,7 +145,7 @@ class GrownBookingController extends Controller
                 $booking->overdueStatus = 'Not Overdue';
             }
         }
-        return view('frontend.bookings.show', ['bookings' => $bookings, 'studentNumber' => $studentNumber]);
+        return view('frontend.bookings.show', ['bookings' => $bookings, 'studentNumber' => $studentNumber, 'contract'=>$this->data['contract']]);
     }
     
 
