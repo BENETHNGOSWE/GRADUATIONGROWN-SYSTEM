@@ -14,6 +14,6 @@ class GraduationGrown extends Model
         'Grown_Size',
         'Grown_price',
         'Grown_returndate',
-        // 'Grown_image',
+        'image',
     ];
 }

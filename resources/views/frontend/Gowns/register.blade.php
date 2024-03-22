@@ -27,9 +27,9 @@
                             style="padding: 10px; border: 1px solid #ccc; border-radius: 5px; width: 100%;">
                     </div>
                     <div style="margin-bottom: 20px;">
-                        <label for="grown_image" style="display: block; font-weight: bold; color: white;">Upload Image:</label>
-                        <input type="file" id="grown_image" name="Grown_image" accept="image/*"
-                            style="padding: 10px; border: 1px solid #ccc; border-radius: 5px; width: 100%;">
+                        <label for="image" style="display: block; font-weight: bold; color: white;">Upload Image:</label>
+                        <img src="" alt="" class="img-product" id="file-preview" />
+                        <input type="file" id="image" name="image" accept="image/*" onchange="showFile(event)">
                     </div>
                     <button type="submit"
                         style="padding: 10px 20px; background-color: #fff; color: #007bff; border: none; border-radius: 5px; cursor: pointer;">Submit</button>
@@ -37,4 +37,16 @@
             </div>
         </div>
     </section>
+    <script>
+        function showFile(event) {
+            var input = event.target;
+            var reader = new FileReader();
+            reader.onload = function() {
+                var dataURL = reader.result;
+                var output = document.getElementById('file-preview');
+                output.src = dataURL;
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    </script>
 @endsection

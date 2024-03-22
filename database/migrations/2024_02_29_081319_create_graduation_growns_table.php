@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('Grown_Size');
             $table->decimal('Grown_price', 8,2);
             $table->date('Grown_returndate');
-            // $table->string('Grown_image')->nullable;
+            $table->string('image');
             $table->timestamps();
         });
     }

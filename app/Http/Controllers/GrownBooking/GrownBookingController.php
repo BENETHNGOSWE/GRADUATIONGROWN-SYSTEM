@@ -45,6 +45,7 @@ class GrownBookingController extends Controller
     public function indexhomepage()
     {
         $this->data['contract'] = GraduationgownContract::first();
+        $this->data['gowns'] = GraduationGrown::all();
         // if ($contract) {
         //     return view('homepage.index', compact('contract'));
         // } else {

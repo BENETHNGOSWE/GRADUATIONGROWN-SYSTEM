@@ -12,13 +12,13 @@ class GraduationGrownController extends Controller
 {
     protected $data = [];
     public function __construct(){
-        $this->data['grown'] = GraduationGrown::all();
+        $this->data['growns'] = GraduationGrown::all();
         $this->data['contract'] = GraduationgownContract::first();
         
     }
 
     public function index(){
-        return view('frotend.gownlist');
+        return view('frontend.Gowns.index',$this->data);
     }
 
     public function create(){
@@ -59,6 +59,7 @@ class GraduationGrownController extends Controller
             'Grown_Size' => 'required|string',
             'Grown_price' => 'required',
             'Grown_returndate' => 'required',
+            'image' => 'required',
             
         ]);
     }
@@ -70,6 +71,12 @@ class GraduationGrownController extends Controller
       try {
          DB::beginTransaction();
          $grown = new GraduationGrown();
+
+         if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $file_name = time() . '.' . $request->image->getClientOriginalExtension();
+            $request->image->move(public_path('images'), $file_name);
+            $validate['image'] = $file_name;
+        }
          $grown->fill($validate);
          $grown->save();
          DB::commit();
