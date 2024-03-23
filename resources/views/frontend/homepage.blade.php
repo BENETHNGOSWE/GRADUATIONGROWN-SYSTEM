@@ -7,7 +7,7 @@
             <div class="container">
                 <div class="banner_content text-center">
                     <h6>Away from university life..</h6>
-                    <h2>Relax Your Mind</h2>
+                    <h2>Relax Your Mind.</h2>
                     <p>Make a booking for your Cloak Graduation Easily Today through Our System With Convenience, Speed and Worry-free<br>
                         After Studies, It's Time to Celebrate with Friends..!".</p>
                     <a href="{{ route('booking.create')}}" class="btn theme_btn button_hover">Make Booking Now</a>
