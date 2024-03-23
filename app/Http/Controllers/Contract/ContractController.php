@@ -59,7 +59,7 @@ class ContractController extends Controller
             \Log::error($th->getMessage() . '' . $th->getTraceAsString());
             return back()->with('error', $th->getMessage());
         }
-        return to_route('/');
+        return to_route('homepage');
     }
 
 
@@ -84,7 +84,7 @@ class ContractController extends Controller
             DB::commit();
         } catch (\Throwable $th) {
             DB::rollback();
-            return to_route('/');
+            return to_route('homepage');
         }
     }
 

@@ -16,7 +16,14 @@
                     <li class="nav-item active"><a class="nav-link" href="{{ route('homepage')}}">Home</a></li> 
                     {{-- <li class="nav-item"><a class="nav-link" href="about.html">About us</a></li> --}}
                     <li class="nav-item"><a class="nav-link" href="{{ route('booking.records')}}">Booking Records</a></li>
-                    {{-- <li class="nav-item"><a class="nav-link" href="{{ route('contract.show', $contract->id)}}">Booking Contract</a></li> --}}
+                    <li class="nav-item">
+                        @if ($contract)
+                            <a class="nav-link" href="{{ route('contract.show', $contract->id)}}">Booking Contract</a>
+                        @else
+                            <span class="nav-link disabled">Booking Contract</span>
+                        @endif
+                    </li>
+                    
                     @auth
                         <li class="nav-item"><a class="nav-link" href="{{ route('booking.list')}}">Booking List</a></li>
                         <li class="nav-item submenu dropdown">
